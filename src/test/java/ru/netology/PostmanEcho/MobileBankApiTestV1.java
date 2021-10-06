@@ -3,22 +3,24 @@ package ru.netology.PostmanEcho;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
-class MobileBankApiTestV1 {
+public class MobileBankApiTestV1 {
     @Test
-    void shouldReturnDemoAccounts() {
+    void should() {
         // Given - When - Then
-// Предусловия
+        // Предусловия
         given()
                 .baseUri("https://postman-echo.com")
                 .body("some data") // отправляемые данные (заголовки и query можно выставлять аналогично)
-// Выполняемые действия
+                // Выполняемые действия
                 .when()
                 .post("/post")
-// Проверки
+                // Проверки
                 .then()
                 .statusCode(200)
-                .body(/* --> ваша проверка здесь <-- */)
-        ;
+                .body ("headers.content-length",equalTo("9"));
+
     }
 }
